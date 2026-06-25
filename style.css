@@ -1,0 +1,464 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+    background:#0d0d0d;
+    color:white;
+}
+
+.container{
+    width:100%;
+    min-height:100vh;
+}
+
+header{
+    width:100%;
+    height:75px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    position:relative;
+    border-bottom:1px solid #222;
+}
+
+.logo{
+    width:170px;
+}
+
+.menuBtn{
+    position:absolute;
+    right:20px;
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:12px;
+    background:#1b1b1b;
+    color:#d4af37;
+    font-size:26px;
+    cursor:pointer;
+}
+
+main{
+    display:flex;
+    justify-content:center;
+    padding:30px;
+}
+
+.card{
+    width:100%;
+    max-width:420px;
+    background:#171717;
+    border:1px solid #2b2b2b;
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+}
+
+.carImage{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    border-radius:16px;
+    background:#222;
+}
+
+#carTitle{
+    margin-top:20px;
+    margin-bottom:25px;
+    color:#d4af37;
+}
+
+#buttonArea{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+#buttonArea button{
+    height:50px;
+    border:none;
+    border-radius:14px;
+    background:#242424;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    transition:.25s;
+}
+
+#buttonArea button:hover{
+    background:#d4af37;
+    color:#111;
+}
+
+.menu{
+    position:fixed;
+    right:-320px;
+    top:0;
+    width:320px;
+    height:100%;
+    background:#151515;
+    transition:.35s;
+    padding:20px;
+    border-left:2px solid #d4af37;
+    z-index:100;
+}
+
+.menu h2{
+    text-align:center;
+    margin:30px 0;
+    color:#d4af37;
+}
+
+.menu button{
+    width:100%;
+    height:48px;
+    margin-bottom:12px;
+    border:none;
+    border-radius:12px;
+    background:#232323;
+    color:white;
+    cursor:pointer;
+}
+
+#closeMenu{
+    width:40px;
+    height:40px;
+    float:right;
+    font-size:20px;
+}
+
+#overlay{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.55);
+}
+#adminPanel{
+    display:none;
+}
+
+#profilePanel{
+    position:fixed;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    width:95%;
+    max-width:420px;
+    max-height:90vh;
+    overflow-y:auto;
+    background:#181818;
+    border:2px solid #d4af37;
+    border-radius:20px;
+    padding:20px;
+    display:none;
+    z-index:300;
+}
+
+#profilePanel h2{
+    text-align:center;
+    color:#d4af37;
+    margin-bottom:20px;
+}
+
+#profilePanel label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+    font-size:14px;
+}
+
+#profilePanel input[type=text]{
+    width:100%;
+    height:45px;
+    border:none;
+    border-radius:10px;
+    padding:10px;
+    background:#2a2a2a;
+    color:white;
+}
+
+#profilePanel input[type=file]{
+    width:100%;
+    color:white;
+}
+
+#profilePanel input[type=checkbox]{
+    margin-right:8px;
+}
+
+#saveBtn{
+    width:100%;
+    height:50px;
+    margin-top:25px;
+    border:none;
+    border-radius:12px;
+    background:#d4af37;
+    color:#111;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+#closeProfile{
+    width:40px;
+    height:40px;
+    float:right;
+    border:none;
+    border-radius:10px;
+    background:#2d2d2d;
+    color:white;
+    cursor:pointer;
+}
+
+@media(max-width:500px){
+
+.logo{
+    width:140px;
+}
+
+.carImage{
+    height:190px;
+}
+
+#buttonArea button{
+    height:46px;
+    font-size:15px;
+}
+
+}
+textarea{
+
+width:100%;
+
+height:120px;
+
+background:#2a2a2a;
+
+border:none;
+
+border-radius:12px;
+
+padding:10px;
+
+margin-top:10px;
+
+margin-bottom:20px;
+
+color:white;
+
+resize:none;
+
+}
+
+#messageList{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.messageCard{
+
+background:#242424;
+
+padding:15px;
+
+border-radius:12px;
+
+border-left:4px solid gold;
+
+}
+#settingsPanel button{
+
+width:100%;
+height:50px;
+
+margin-top:12px;
+
+background:#2b2b2b;
+
+color:white;
+
+border:none;
+
+border-radius:12px;
+
+cursor:pointer;
+
+font-size:15px;
+
+}
+
+#settingsPanel button:hover{
+
+background:#d4af37;
+
+color:#111;
+
+}
+#settingsPanel,
+#messagePanel,
+#sendMessagePanel{
+
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+
+width:95%;
+max-width:420px;
+max-height:90vh;
+
+overflow-y:auto;
+
+background:#181818;
+
+border:2px solid #d4af37;
+
+border-radius:20px;
+
+padding:20px;
+
+display:none;
+
+z-index:999;
+
+}
+#messagePanel,
+#sendMessagePanel,
+#settingsPanel{
+
+position:fixed;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+
+width:95%;
+max-width:420px;
+max-height:90vh;
+
+overflow:auto;
+
+background:#181818;
+
+border:2px solid #d4af37;
+
+border-radius:20px;
+
+padding:20px;
+
+display:none;
+
+z-index:999;
+
+}
+.messageTime{
+
+font-size:12px;
+
+color:#9ca3af;
+
+margin-top:8px;
+
+display:block;
+
+}
+
+.deleteAllBtn{
+
+width:100%;
+
+height:45px;
+
+margin-top:20px;
+
+background:#b91c1c;
+
+border:none;
+
+border-radius:10px;
+
+color:white;
+
+cursor:pointer;
+
+font-weight:bold;
+
+}
+
+.deleteAllBtn:hover{
+
+background:#dc2626;
+
+}
+.msgName{
+
+font-size:20px;
+
+font-weight:bold;
+
+color:#ffd54f;
+
+margin-bottom:10px;
+
+}
+
+.msgText{
+
+font-size:16px;
+
+color:white;
+
+margin-bottom:12px;
+
+word-break:break-word;
+
+}
+
+.msgDate{
+
+font-size:13px;
+
+color:#cfcfcf;
+
+margin-bottom:15px;
+
+}
+
+.deleteBtn{
+
+background:#c62828;
+
+border:none;
+
+color:white;
+
+padding:8px 15px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-weight:bold;
+
+transition:.25s;
+
+}
+
+.deleteBtn:hover{
+
+background:#e53935;
+
+transform:scale(1.05);
+
+}

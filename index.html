@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CARTAG</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+<img src="logo.png" class="logo">
+
+<button id="menuBtn" class="menuBtn">☰</button>
+
+</header>
+
+<main>
+
+<div class="card">
+
+<img src="logo.png" id="carImage" class="carImage">
+
+<h1 id="carTitle">Araç Eklenmedi</h1>
+
+<div id="buttonArea">
+
+<button id="instagramBtn">📷 Instagram</button>
+
+<button id="phoneBtn">📞 Telefon</button>
+
+<button id="messageBtn">💬 Mesaj Gönder</button>
+
+<button id="locationBtn">📍 Konumu Aç</button>
+
+<button id="parkBtn">⭐ Park Yerimi Kaydet</button>
+
+</div>
+
+</div>
+
+</main>
+
+</div>
+
+<div id="overlay"></div>
+
+<div id="menu" class="menu">
+
+<button id="closeMenu">✖</button>
+
+<h2>CARTAG</h2>
+
+<button id="loginBtn">
+
+🔒 Giriş Yap
+
+</button>
+
+<div id="adminPanel">
+
+<button id="profileBtn">
+
+👤 Profil Düzenle
+
+</button>
+
+<button id="messagesBtn">
+
+📩 Mesajlar <span id="messageBadge"></span>
+
+</button>
+<button id="maintenanceBtn">
+
+🛠️ Bakım Takibi
+
+</button>
+
+<button id="valeBtn">
+
+🚗 Vale Modu
+
+</button>
+
+<button id="settingsBtn">
+
+⚙️ Ayarlar
+
+</button>
+
+<button id="logoutBtn">
+
+🚪 Çıkış
+
+</button>
+
+</div>
+
+</div>
+
+<div id="profilePanel">
+
+<button id="closeProfile">✖</button>
+
+<h2>Profil Düzenle</h2>
+
+<label>Araç Markası</label>
+<input id="brand" type="text">
+
+<label><input id="showBrand" type="checkbox"> Göster</label>
+
+<label>Araç Modeli</label>
+<input id="model" type="text">
+
+<label><input id="showModel" type="checkbox"> Göster</label>
+
+<label>Instagram</label>
+<input id="instagram" type="text">
+
+<label><input id="showInstagram" type="checkbox"> Göster</label>
+
+<label>Telefon</label>
+<input id="phone" type="text">
+
+<label><input id="showPhone" type="checkbox"> Göster</label>
+
+<label>Araç Fotoğrafı</label>
+<input id="photo" type="file">
+
+<label><input id="showPhoto" type="checkbox"> Göster</label>
+
+<label><input id="showMessage" type="checkbox"> Mesaj Butonu</label>
+
+<label><input id="showLocation" type="checkbox"> Konum Butonu</label>
+
+<label><input id="showPark" type="checkbox"> Park Butonu</label>
+
+<button id="saveBtn">Kaydet</button>
+
+</div>
+
+
+
+<div id="messagePanel">
+
+<button id="closeMessages">✖</button>
+
+<h2 id="messageTitle">📩 Gelen Mesajlar (0)</h2>
+
+<div id="messageList"></div>
+
+</div>
+
+
+
+<div id="sendMessagePanel">
+
+<button id="closeSendMessage">✖</button>
+
+<h2>Mesaj Gönder</h2>
+
+<input
+id="senderName"
+type="text"
+placeholder="Adınız">
+
+<textarea
+id="senderMessage"
+placeholder="Mesajınız"></textarea>
+
+<button id="sendMessageBtn">
+
+Mesaj Gönder
+
+</button>
+
+</div>
+
+
+
+<div id="settingsPanel">
+
+<button id="closeSettings">✖</button>
+
+<h2>Ayarlar</h2>
+
+<button id="changePasswordBtn">
+
+Şifre Değiştir
+
+</button>
+
+<button id="backupBtn">
+
+Yedek Al
+
+</button>
+
+<button id="restoreBtn">
+
+Yedeği Geri Yükle
+
+</button>
+
+<input
+type="file"
+id="restoreFile"
+accept=".json"
+style="display:none;">
+
+<button id="resetBtn">
+
+Tüm Verileri Sil
+
+</button>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
