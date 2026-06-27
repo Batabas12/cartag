@@ -2,6 +2,34 @@
 // CARTAG V2
 // Menü Sistemi
 // ==============================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+
+import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    collection,
+    addDoc,
+    getDocs,
+    deleteDoc,
+    query,
+    orderBy
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+const firebaseConfig = {
+  apiKey: "AIzaSyCZA6Qzjo7NfJX_k71dljwq5VJcRaGFfOA",
+  authDomain: "cartag-ab2e3.firebaseapp.com",
+  projectId: "cartag-ab2e3",
+  storageBucket: "cartag-ab2e3.firebasestorage.app",
+  messagingSenderId: "964714702055",
+  appId: "1:964714702055:web:1f7b7b5cd4e3c6b69bee42",
+  measurementId: "G-DL0NQJKQRD"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+
 
 const menuBtn = document.getElementById("menuBtn");
 const closeMenu = document.getElementById("closeMenu");
@@ -145,11 +173,24 @@ loginBtn.onclick = function () {
     // ==============================
 
     saveBtn.onclick = function () {
+        const carId = new URLSearchParams(window.location.search).get("id") || "CT-X9A4P8";
 
-        localStorage.setItem("brand", brand.value);
-        localStorage.setItem("model", model.value);
-        localStorage.setItem("instagram", instagram.value);
-        localStorage.setItem("phone", phone.value);
+setDoc(doc(db, "arabalar", carId), {
+
+    marka: brand.value,
+
+    model: model.value,
+
+    telefon: phone.value,
+
+    instagram: instagram.value
+
+}, { merge: true });
+
+        //localStorage.setItem("brand", brand.value);
+        //localStorage.setItem("model", model.value);
+        //localStorage.setItem("instagram", instagram.value);
+        //localStorage.setItem("phone", phone.value);
 
         localStorage.setItem("showBrand", showBrand.checked);
         localStorage.setItem("showModel", showModel.checked);
@@ -175,14 +216,35 @@ loginBtn.onclick = function () {
     // ==============================
 
     window.onload = function () {
+        const params = new URLSearchParams(window.location.search);
 
-        brand.value = localStorage.getItem("brand") || "";
+const carId = params.get("id") || "CT-X9A4P8";
 
-        model.value = localStorage.getItem("model") || "";
+const aracRef = doc(db, "arabalar", carId);
 
-        instagram.value = localStorage.getItem("instagram") || "";
+getDoc(aracRef).then((arac) => {
 
-        phone.value = localStorage.getItem("phone") || "";
+    if (arac.exists()) {
+
+        const veri = arac.data();
+
+        brand.value = veri.marka || "";
+
+        model.value = veri.model || "";
+
+        phone.value = veri.telefon || "";
+
+    }
+
+});
+
+        //brand.value = localStorage.getItem("brand") || "";
+
+        //model.value = localStorage.getItem("model") || "";
+
+        //instagram.value = localStorage.getItem("instagram") || "";
+
+        //phone.value = localStorage.getItem("phone") || "";
 
         showBrand.checked = localStorage.getItem("showBrand") == "true";
 
@@ -861,4 +923,18 @@ function mesajRozetiGuncelle() {
 
     badge.innerHTML = mesajlar.length > 0 ? `(${mesajlar.length})` : "";
 
+}
+const params = new URLSearchParams(window.location.search);
+
+const carId = params.get("id") || "CT-X9A4P8";
+
+const aracRef = doc(db, "arabalar", carId);
+
+const arac = await getDoc(aracRef);
+
+if (arac.exists()) {
+    console.log("Firebase Bağlandı!");
+    console.log(arac.data());
+} else {
+    console.log("Araç bulunamadı.");
 }
