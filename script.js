@@ -216,6 +216,7 @@ setDoc(doc(db, "arabalar", carId), {
     // ==============================
 
     window.onload = function () {
+        console.log("window.onload çalıştı");
         const params = new URLSearchParams(window.location.search);
 
 const carId = params.get("id") || "CT-X9A4P8";
@@ -246,13 +247,12 @@ getDoc(aracRef).then((arac) => {
 
         //phone.value = localStorage.getItem("phone") || "";
 
-        showBrand.checked = localStorage.getItem("showBrand") == "true";
+        showBrand.checked = true;
+        showModel.checked = true;
 
-        showModel.checked = localStorage.getItem("showModel") == "true";
+        showInstagram.checked = true;
 
-        showInstagram.checked = localStorage.getItem("showInstagram") == "true";
-
-        showPhone.checked = localStorage.getItem("showPhone") == "true";
+        showPhone.checked = true;
 
         showPhoto.checked = localStorage.getItem("showPhoto") == "true";
 
@@ -931,6 +931,8 @@ const carId = params.get("id") || "CT-X9A4P8";
 const aracRef = doc(db, "arabalar", carId);
 
 const arac = await getDoc(aracRef);
+
+console.log("ID =", carId);
 
 if (arac.exists()) {
     console.log("Firebase Bağlandı!");
