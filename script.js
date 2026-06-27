@@ -238,7 +238,9 @@ getDoc(aracRef).then((arac) => {
         showModel.checked = true;
         showInstagram.checked = true;
         showPhone.checked = true;
-
+        showLocation.checked = true;
+        showPark.checked = true;
+        showMessage.checked = true;
         guncelle();   // <<< BURAYA TAŞI
 
     }
