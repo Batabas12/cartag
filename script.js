@@ -230,39 +230,20 @@ getDoc(aracRef).then((arac) => {
         const veri = arac.data();
 
         brand.value = veri.marka || "";
-
         model.value = veri.model || "";
-
         phone.value = veri.telefon || "";
+        instagram.value = veri.instagram || "";
+
+        showBrand.checked = true;
+        showModel.checked = true;
+        showInstagram.checked = true;
+        showPhone.checked = true;
+
+        guncelle();   // <<< BURAYA TAŞI
 
     }
 
 });
-
-        //brand.value = localStorage.getItem("brand") || "";
-
-        //model.value = localStorage.getItem("model") || "";
-
-        //instagram.value = localStorage.getItem("instagram") || "";
-
-        //phone.value = localStorage.getItem("phone") || "";
-
-        showBrand.checked = true;
-        showModel.checked = true;
-
-        showInstagram.checked = true;
-
-        showPhone.checked = true;
-
-        showPhoto.checked = localStorage.getItem("showPhoto") == "true";
-
-        showMessage.checked = localStorage.getItem("showMessage") == "true";
-
-        showLocation.checked = localStorage.getItem("showLocation") == "true";
-
-        showPark.checked = localStorage.getItem("showPark") == "true";
-
-        guncelle();
         mesajRozetiGuncelle();
         const carImage = document.getElementById("carImage");
 
