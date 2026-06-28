@@ -172,18 +172,23 @@ loginBtn.onclick = function () {
     // KAYDET
     // ==============================
 
-    saveBtn.onclick = function () {
+    saveBtn.onclick = async function () {
         const carId = new URLSearchParams(window.location.search).get("id") || "CT-X9A4P8";
 
-setDoc(doc(db, "arabalar", carId), {
+await setDoc(doc(db, "arabalar", carId), {
 
     marka: brand.value,
-
     model: model.value,
-
     telefon: phone.value,
+    instagram: instagram.value,
 
-    instagram: instagram.value
+    showBrand: showBrand.checked,
+    showModel: showModel.checked,
+    showInstagram: showInstagram.checked,
+    showPhone: showPhone.checked,
+    showMessage: showMessage.checked,
+    showLocation: showLocation.checked,
+    showPark: showPark.checked
 
 }, { merge: true });
 
@@ -234,13 +239,14 @@ getDoc(aracRef).then((arac) => {
         phone.value = veri.telefon || "";
         instagram.value = veri.instagram || "";
 
-        showBrand.checked = true;
-        showModel.checked = true;
-        showInstagram.checked = true;
-        showPhone.checked = true;
-        showLocation.checked = true;
-        showPark.checked = true;
-        showMessage.checked = true;
+        showBrand.checked = veri.showBrand ?? true;
+        showModel.checked = veri.showModel ?? true;
+        showInstagram.checked = veri.showInstagram ?? true;
+        showPhone.checked = veri.showPhone ?? true;
+        showLocation.checked = veri.showLocation ?? true;
+        showPark.checked = veri.showPark ?? true;
+        showPark.checked = veri.showPark ?? true;
+
         guncelle();   // <<< BURAYA TAŞI
 
     }
