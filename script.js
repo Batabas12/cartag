@@ -437,7 +437,7 @@ if (loginBtn.style.display == "none") {
 
     phoneBtn.onclick = function () {
 
-        let tel = localStorage.getItem("phone");
+        let tel = phone.value.trim();
 
         if (tel == null || tel == "") {
 
