@@ -413,25 +413,22 @@ if (loginBtn.style.display == "none") {
 
     instagramBtn.onclick = function () {
 
-        let hesap = localStorage.getItem("instagram");
+    let hesap = instagram.value.trim();
 
-        if (hesap == null || hesap == "") {
+    if (hesap == "") {
 
-            alert("Instagram hesabı girilmemiş.");
+        alert("Instagram hesabı girilmemiş.");
 
-            return;
-
-        }
-
-        window.open(
-
-            "https://instagram.com/" + hesap,
-
-            "_blank"
-
-        );
+        return;
 
     }
+
+    window.open(
+        "https://instagram.com/" + hesap,
+        "_blank"
+    );
+
+}
     // ==============================
     // TELEFON
     // ==============================
