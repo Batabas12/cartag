@@ -101,7 +101,10 @@ loginBtn.onclick = function () {
 
         loginBtn.style.display = "none";
 
+
         adminPanel.style.display = "block";
+        guncelle();
+
 
         alert("Giriş Başarılı");
 
@@ -389,18 +392,18 @@ getDoc(aracRef).then((arac) => {
 
         // Park
 
-        parkBtn.style.display =
+        // Park
 
-            showPark.checked
+if (loginBtn.style.display == "none") {
 
-                ?
+    parkBtn.style.display =
+        showPark.checked ? "block" : "none";
 
-                "block"
+} else {
 
-                :
+    parkBtn.style.display = "none";
 
-                "none";
-
+}
     }
     // ==============================
     // INSTAGRAM
@@ -456,26 +459,41 @@ getDoc(aracRef).then((arac) => {
 
     const locationBtn = document.getElementById("locationBtn");
 
-    locationBtn.onclick = function () {
+    locationBtn.onclick = async function () {
 
-    const lat = localStorage.getItem("parkLat");
-    const lng = localStorage.getItem("parkLng");
+    const carId =
+    new URLSearchParams(window.location.search).get("id") || "CT-X9A4P8";
 
-    if (!lat || !lng) {
+const arac = await getDoc(doc(db, "arabalar", carId));
 
-        alert("Henüz park konumu kaydedilmemiş.");
+if (!arac.exists()) {
 
-        return;
+    alert("Araç bulunamadı.");
 
-    }
+    return;
 
-    window.open(
+}
 
-        `https://www.google.com/maps?q=${lat},${lng}`,
+const veri = arac.data();
 
-        "_blank"
+const lat = veri.parkLat;
+const lng = veri.parkLng;
 
-    );
+if (!lat || !lng) {
+
+    alert("Henüz park konumu kaydedilmemiş.");
+
+    return;
+
+}
+
+window.open(
+
+    `https://www.google.com/maps?q=${lat},${lng}`,
+
+    "_blank"
+
+);
 
 }
     // ==============================
@@ -486,33 +504,23 @@ getDoc(aracRef).then((arac) => {
 
     parkBtn.onclick = function () {
 
-        navigator.geolocation.getCurrentPosition(
+    navigator.geolocation.getCurrentPosition(async function (pos) {
 
-            function (pos) {
+        const carId =
+            new URLSearchParams(window.location.search).get("id") || "CT-X9A4P8";
 
-                localStorage.setItem(
+        await setDoc(doc(db, "arabalar", carId), {
 
-                    "parkLat",
+            parkLat: pos.coords.latitude,
+            parkLng: pos.coords.longitude
 
-                    pos.coords.latitude
+        }, { merge: true });
 
-                );
+        alert("Park Konumu Kaydedildi.");
 
-                localStorage.setItem(
+    });
 
-                    "parkLng",
-
-                    pos.coords.longitude
-
-                );
-
-                alert("Park Konumu Kaydedildi.");
-
-            }
-
-        );
-
-    }
+}
     //============================
     // MESAJ GÖNDER
     //============================
